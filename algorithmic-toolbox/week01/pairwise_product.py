@@ -3,7 +3,11 @@ from typing import List, Tuple
 
 
 def find_two_largest(nums: List[int]) -> Tuple[int]:
+    if len(nums) <= 2:
+        return nums
+
     first = second = -math.inf
+
     for number in nums:
         if number >= first:
             second = first
@@ -23,8 +27,4 @@ if __name__ == "__main__":
 
     assert n == len(nums)
 
-    if n <= 2:
-        items = nums
-    else:
-        items = find_two_largest(nums)
-    print(reduce(operator.mul, items))
+    print(reduce(operator.mul, find_two_largest(nums)))
