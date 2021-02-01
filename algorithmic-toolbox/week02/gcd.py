@@ -11,11 +11,12 @@ def naive_approach(num1: int, num2: int) -> int:
 
 def euclidean_approach(num1: int, num2: int) -> int:
     """
-    For the proof you can watch this video on Youtube:
+    Mathematical proof of this apporach can be found here:
     https://www.youtube.com/watch?v=H_2_nqKAZ5w
 
-    In this implementation we assumed num1 is always bigger than num1.
-    And I used recursive approach as it is easier to read, non-recursive one:
+    In this implementation we assumed num1 is always bigger than num2.
+    And the recursive approach is chosen as it is easier to read. However,
+    below you can find non-recursive implementation:
 
     def euclidean_approach(num1, num2):
         while num2:
