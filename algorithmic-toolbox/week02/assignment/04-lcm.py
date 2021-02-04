@@ -23,7 +23,7 @@ def euclidean_approach(num1: int, num2: int) -> int:
 
 def lcm(num1: int, num2: int) -> int:
     """
-    I followed numpy approach:
+    NumPy approach:
     https://github.com/numpy/numpy/blob/d62b0ee88b20e5946fe49f0ba533b3e547e4d4f1/numpy/core/src/umath/_rational_tests.c.src#L106
     """
     gcd = euclidean_approach(num1, num2)
