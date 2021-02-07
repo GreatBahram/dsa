@@ -16,9 +16,14 @@ Another important term is the **safe move**. We call a **greedy** choice a **saf
 General Strategy:
 
 1. Make a greedy choice
+
 2. Prove that it is a safe move
+
 3. Reduce the problem to a subproblem.
+
 4. Solve the subproblem.
+
+   <img src="assets/greedy-algorithm.png" style="zoom:50%">
 
 ### Minimum refuel problem
 
@@ -32,11 +37,31 @@ General Strategy:
 
 Naive solution would be to check all grouping options, as each children can be included or excluded, the time complexity is **Ω(n^2)**.
 
-<img src="/home/bahram/Projects/dsa/algorithmic-toolbox/week03/assets/Screenshot from 2021-02-06 21-31-53.png" style="zoom:20%">
+<img src="assets/Screenshot from 2021-02-06 21-31-53.png" style="zoom:20%">
 
 The efficient algorithm is to represent each children as a point on x axis, sort them and then split data into a group of points with at most one unit difference. The time complexity of this approach is **O(n)**, thought this is when we don't consider the sorting cost which is **O(`nlogn`)**.
 
-<img src="/home/bahram/Projects/dsa/algorithmic-toolbox/week03/assets/Screenshot from 2021-02-06 21-40-56.png" style="zoom:20%">
+<img src="assets/Screenshot from 2021-02-06 21-40-56.png" style="zoom:20%">
+
+### Fractional Knapsack
+
+> Given weights and values of n items, we need to put these items in a knapsack of capacity **W** to get the maximum total value in the knapsack.
+
+<img src="assets/knapsack-01.png" style="zoom:20%">
+
+#### Naive approach
+
+<img src="assets/knapsack-02.png" style="zoom:15%">
+
+* Time complexity of this approach:
+
+<img src="assets/knapsack-03.png" style="zoom:16%">
+
+* Efficient way to solve it:
+
+<img src="assets/knapsack-04.png" style="zoom:16%">
+
+<img src="assets/knapsack-05.png" style="zoom:17%">
 
 ## Useful links
 
