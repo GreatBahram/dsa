@@ -25,6 +25,8 @@ General Strategy:
 
    <img src="assets/greedy-algorithm.png" style="zoom:50%">
 
+## Problems
+
 ### Minimum refuel problem
 
 ### Celebration party problem
