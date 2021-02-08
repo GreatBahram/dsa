@@ -1,34 +1,44 @@
 import sys
+from functools import total_ordering
 from typing import List, Tuple
 
 
-def get_optimal_value(capacity: int, values_weights: List[Tuple[int, int]]) -> float:
+@total_ordering
+class Item:
+    def __init__(self, weight: int, value: int) -> None:
+        self.weight = weight
+        self.value = value
+        self.cost = value / weight
+
+    def __lt__(self, other) -> bool:
+        return self.cost < other.cost
+
+    def __eq__(self, other) -> bool:
+        return self.cost == other.cost
+
+
+def get_optimal_value(capacity: int, items: List[Item]) -> float:
     total_value = 0.0
 
-    for value, weight in values_weights:
+    for item in items:
         if capacity == 0:
             return total_value
 
-        amount = min(weight, capacity)
-        unit_worth = value / weight
-        total_value += amount * unit_worth
+        amount = min(item.weight, capacity)
+        total_value += amount * item.cost
         capacity -= amount
 
     return total_value
 
 
 if __name__ == "__main__":
-    # get data
     n, capacity = map(int, sys.stdin.readline().split())
-    values_weights = []
+    items = []
     for _ in range(n):
         value, weight = map(int, sys.stdin.readline().split())
-        values_weights.append((value, weight))
+        items.append(Item(weight, value))
 
-    # sort the input data by descending order
-    sorted_values_weights = sorted(
-        values_weights, key=lambda d: d[0] / d[1], reverse=True
-    )
+    sorted_items = sorted(items, reverse=True)
 
-    opt_value = get_optimal_value(capacity, sorted_values_weights)
+    opt_value = get_optimal_value(capacity, sorted_items)
     print(f"{opt_value:.10f}")
