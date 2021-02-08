@@ -6,7 +6,7 @@ from typing import List
 IMPOSSIBLE = -1
 
 
-def min_refill(stations: List[Number], limit: int):
+def min_refill(stations: List[Number], limit: int) -> int:
     """
     Don't forget to add start and end point into stations variable.
     If you need further investigation, check this one:
