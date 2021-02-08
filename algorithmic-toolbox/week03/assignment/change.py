@@ -6,9 +6,8 @@ DENOMINATIONS: List[int] = [10, 5, 1]
 def get_change(m: int) -> int:
     count = 0
     for denomination in DENOMINATIONS:
-        q, r = divmod(m, denomination)
+        q, m = divmod(m, denomination)
         count += q
-        m = r
     return count
 
 
