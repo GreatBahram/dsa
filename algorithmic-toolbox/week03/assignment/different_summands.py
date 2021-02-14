@@ -7,13 +7,11 @@ def optimal_summands(n: int) -> List[int]:
     increment: int = 1
     remainder: int = n - 1
 
-
     if n < 3:
         summands.append(n)
         return summands
 
     summands.append(1)
-
 
     while remainder > 0:
         if remainder <= summands[-1]:
