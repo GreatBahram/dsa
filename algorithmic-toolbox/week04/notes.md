@@ -31,3 +31,27 @@ Time complexity of this algorithm is the same as the naive algorithm **O(n^2)**.
 <img src="assets/polynomial-multiplication-05.png" style="zoom:25%">
 
 #### Efficient divide and conquer algorithm
+
+`Karatsuba` realized in a normal multiplication we have 4 multiplication:
+
+<img src="assets/karatsuba-approach-01.png" style="zoom:20%">
+
+He rewrited the formula to have fewer multiple operations:
+
+<img src="assets/karatsuba-approach-02.png" style="zoom:20%">
+
+For example: as it can be observed we have only 3 multiplication, instead of 4. This can reduce the time complexity of the algorithm significantly.
+
+<img src="assets/karatsuba-approach-03.png" style="zoom:20%">
+
+Time Complexity:
+
+<img src="assets/karatsuba-approach-04.png" style="zoom:20%">
+
+## Master Theorem
+
+Master theorem helps us to identify the time complexity of a divide-and-conquer algorithm more easily, instead of creating the recurrence tree we can simply recognize it.
+
+<img src="assets/master-theorem.png" style="zoom:20%">
+
+## Sorting Problem
