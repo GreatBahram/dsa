@@ -147,3 +147,71 @@ https://codereview.stackexchange.com/questions/105490/counting-sort-in-python
 Summary
 
 <img src="assets/sorting-problem/merge-sort-07.png" style="zoom:20%">
+
+### Quick Sort
+
+* Comparison based
+* running time: $$O(n \lg n)$$, (on average)
+* efficient in practice
+
+It will pick a pivot and it will arrange items in way that pivot will be placed in its final position, and all the elements before it are lower or equal to the pivot and all of items on the right are bigger than the pivot.
+
+<img src="assets/sorting-problem/quick-sort-01.png" style="zoom:40%" alt="How quick sort works">
+
+What's remain to be done, is the left and right side of the pivot item. We could do by two recursive calls.
+
+<img src="assets/sorting-problem/quick-sort-02.png" style="zoom:20%" alt="How quick sort works">
+
+<img src="assets/sorting-problem/quick-sort-03.png" style="zoom:15%" alt="How quick sort works">
+
+But, how does the partition function work?
+
+<img src="assets/sorting-problem/quick-sort-04.png" style="zoom:15%" alt="How quick sort works">
+
+If we in each iteration choose the minimum element then we compare this element with all other element, image we're doing this for all iteration (this case is called **unbalanced partition**):
+$$
+T(n) = n + T(n-1): \\
+T(n) = n + n -1 + n-2 + \dots = \Theta(n^2)
+$$
+Unbalanced partition, with any degree, always leads to $$\Theta(n^2)$$ running time. But if we could somehow find a partition that split the array into two halves (**balanced partition**):
+$$
+T(n) = 2T(\frac{n}{2}) + n \\
+T(n) = \Theta(n \lg n)
+$$
+Balanced partitions are better, as they reduce the number of comparisons.
+
+So, finding a good pivot is the most important aspect of quick sort (even if this pivot does not split it equivalently it is still $$\Theta(n \lg n)$$). From the mathematical point of view, this element should the the median of the array. But what if we choose the pivot randomly:
+
+<img src="assets/sorting-problem/quick-sort-05.png" style="zoom:.2" alt="Random pivot">
+
+Why random pivot?
+
+Image we an array of items called A, and each element is unique inside the list, if we sort this array, then we expect the $$\frac{n}{2}$$ of item be placed in the center of the sorted array, the remaining $$2\frac{n}{4}$$ be smaller and greater, respectively of the centered items. **So half of the elements of A guarantees a balanced partition.**
+
+##### Equal elements
+
+If we have some repetition inside our list, then when we pick a pivot all other repeated one will be sorted as well, and we should take this into consideration to don't use any of repeated ones again. As result, quick sort is not as fast as merge sort on a dataset with a few unique elements. On this case the running time is $$\Theta(n^2)$$. This is true even for pre-sorted arrays.
+
+To handle equal elements we could change our partition algorithm to split the data after choosing a pivot into three region.
+
+<img src="assets/sorting-problem/quick-sort-06.png" style="zoom:60%" alt="How quick sort works">
+
+<img src="assets/sorting-problem/quick-sort-07.png" style="zoom:70%" alt="How quick sort works">
+
+With this simple modification, `Partition3`, quick sorting algorithm is now faster than merge sort on dataset with few unique elements.
+
+<img src="assets/sorting-problem/quick-sort-08.png" style="zoom:70%">
+
+* Up to now, we only implemented this algorithm recursively and it might use too much of stack resources, **it uses $$O(n)$$ additional memory**. One way to remedy this is to reduce the recursive calls to one and in this case uses **no more than $$O(\log n)$$ additional memory**.
+
+<img src="assets/sorting-problem/quick-sort-09.png" style="zoom:60%">
+
+Here, we don't care about which side is shorter, while we have the option to decide first which side we want to sort:
+
+<img src="assets/sorting-problem/quick-sort-10.png" style="zoom:40%">
+
+And finally, as we don't have control over to how select pivot in this approach, it is randomized, we can go for another approach which is more deterministic. For instance, we can use the median-of-medians algorithm to always choose the median of dataset.
+
+https://stackabuse.com/quicksort-in-python/
+
+https://brilliant.org/wiki/quick-sort/
