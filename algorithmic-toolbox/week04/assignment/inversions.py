@@ -1,16 +1,6 @@
 import sys
 
 
-def count_inversions(numbers):
-    """
-    >>> items = [8, 4, 2, 1]
-    >>> count_inversions(items)
-    6
-    """
-    tmp = [0] * len(numbers) 
-    return get_number_of_inversions(numbers, tmp, 0, len(numbers) - 1)
-
-
 def get_number_of_inversions(numbers, tmp, left, right) -> int:
     inversions = 0
 
@@ -52,14 +42,25 @@ def merge(numbers, tmp, left, mid, right):
         j += 1
         k += 1
 
+    # copy sorted array from the temp array into the original one
     for idx in range(left, right + 1):
         numbers[idx] = tmp[idx]
 
     return inversions
 
 
+def brute_force(array, n):
+    inversions = 0
+    for i in range():
+        for j in range(i + 1, n)):
+            if array[j] > array[i]:
+                inversions += 1
+    return inversions
+
+
 if __name__ == "__main__":
     input = sys.stdin.read()
     n, *numbers = list(map(int, input.split()))
+    # we use this temporary array to save temporarily save the sorted array inside it.
     tmp = n * [0]
     print(get_number_of_inversions(numbers, tmp, 0, n - 1))
