@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Money Chang problem Dynamic programming solution:
+"""Money Change problem Dynamic programming solution:
 We are going to solve this exercise in two ways:
     1. Top-down approach, i.e. recursive.
     2. Bottom-up, using tabulation (matrix).
@@ -66,12 +66,11 @@ def get_change(money: int) -> int:
     if money == 0:
         return money
 
-    cols = money + 1  # 1 for the first 0 column
     memo = [0] + [math.inf] * money
 
     for coin in DENOMINATIONS:
         # we ignore the zero column, as we need 0 coin to change it!
-        for col_idx in range(1, cols):
+        for col_idx in range(1, money + 1):
             # is it possible to change this amount of money with this coin?
             if col_idx >= coin:
                 memo[col_idx] = min(memo[col_idx], memo[col_idx - coin] + 1)
