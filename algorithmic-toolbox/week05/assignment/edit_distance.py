@@ -5,6 +5,10 @@ def top_down_edit_distance(str1: str, str2: str, m: int, n: int) -> int:
     """
     m: is len(str1)
     n: is len(str2)
+    It will take a long time for a large strings.
+    example:
+    >>> top_down_edit_distance("dinitrophenylhydrazine", "benzalphenylhydrazone", 22, 21)
+
     """
     if m == 0:
         return n
