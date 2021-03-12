@@ -1,6 +1,6 @@
 # Dynamic Programming
 
-In the change problem that we solved in the third week, greedy algorithms, in some situations greedy approach does not find the optimal answer. Consider this case:
+In the change problem that we solved in the third week, using the Greedy algorithm, in some situations greedy approach does not find the optimal answer. Consider this case:
 
 ```python
 # You have to take back 40 cents
@@ -22,15 +22,15 @@ It seems pretty rationale, but how fast is the recursive approach?
 
 <img src="assets/dynamic-01.png" style="zoom:25%" />
 
-The depth of this very huge and there is redundancy as well. We are going to solve the disadvantage of this method using dynamic programming.
+The depth of this very **huge** and there is **redundancy** as well. We are going to solve the disadvantage of this method using dynamic programming.
 
 <img src="assets/dynamic-02.png" style="zoom:25%" />
 
-Here, the idea is, instead of going from right to left (in recursive approach), we go from left to right.
+Here the idea is, instead of going from right to left (in recursive approach), we go from left to right. Firstly we calculate the lower amounts and we don't need a recursive tree.
 
 ## Introduction
 
-In dynamic programming, our goal is to break the main problem into subproblems and save the result of each subproblem (memoization) and then re-use that  pre-calculated value:
+In dynamic programming, our goal is to break the main problem into **subproblems** and save the result of each subproblem (**memoization**) and then re-use that  pre-calculated value:
 $$
 DP = Guessing + Recursion + Memoization
 $$
@@ -42,6 +42,11 @@ $$
 Don't count the memoized recursions, you just do it one time and use other time.
 
 * Subproblems dependencies should be **acyclic**, otherwise you cannot use the recursion.
+
+There are two main approaches in dynamic programming:
+
+1. Top-down approach: we use recursion here.
+2. Bottom-up: We try to minimize the recursion using the Memoization technique. 
 
 ## Problems
 
@@ -92,3 +97,8 @@ And at the end we have **a filled matrix**, if we start from **the end** of this
 
 <img src="assets/dynamic-05.png" style="zoom:30%" />
 
+### Longest common subsequence of two sequences
+
+### Coin Change
+
+### Primitive Calculator
