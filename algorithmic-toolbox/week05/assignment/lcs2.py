@@ -20,8 +20,8 @@ def generate_memo(cols: int, rows: int):
 
 def lcs2(a: str, b: str):
     memo = generate_memo(len(a), len(b))
-    a = "_" + a
-    b = "_" + b
+    a = [None] + a
+    b = [None] + b
 
     for j in range(1, len(b)):
         for i in range(1, len(a)):
@@ -29,7 +29,7 @@ def lcs2(a: str, b: str):
                 memo[j][i] = 1 + memo[j - 1][i - 1]
             else:
                 memo[j][i] = max(memo[j - 1][i], memo[j][i - 1])
-    return memo
+    return memo[-1][-1]
 
 
 if __name__ == "__main__":
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     data = data[1:]
     b = data[:m]
 
-    print(lcs2("".join(a), "".join(b)))
+    print(lcs2(a, b))
