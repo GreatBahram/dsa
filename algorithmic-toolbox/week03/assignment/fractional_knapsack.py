@@ -11,6 +11,9 @@ class Item:
         self.value = value
         self.cost = value / weight
 
+    def __repr__(self):
+        return f"{type(self).__name__}(weight={self.weight!r}, value={self.value})"
+
     def __lt__(self, other) -> bool:
         return self.cost < other.cost
 
