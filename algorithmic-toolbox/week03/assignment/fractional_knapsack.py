@@ -1,3 +1,4 @@
+"""Greedy solution for Fractional Knapsack problem."""
 import sys
 from functools import total_ordering
 from typing import List, Tuple
