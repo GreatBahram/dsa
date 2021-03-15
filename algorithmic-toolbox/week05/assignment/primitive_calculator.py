@@ -16,6 +16,7 @@ def optimal_sequence(n):
 
 
 def pcalc(n: int) -> int:
+    # starting point is 1, so 1:0.
     memo = {1: 0, 2: 1, 3: 1}
 
     if n in memo:
