@@ -1,15 +1,17 @@
+from typing import Dict
+
+
 def rfib(n: int) -> int:
     """
     Recursive Fibonacci.
     This implementation takes a very long time to
     compute the Fibonacci number of 50.
+    Time complexity: O(2**n)
     """
     if n < 2:  # base case
         return n
     return rfib(n - 2) + rfib(n - 1)  # recursive case
 
-
-from typing import Dict
 
 memo: Dict[int, int] = {0: 0, 1: 1}
 
