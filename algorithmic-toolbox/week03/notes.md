@@ -1,11 +1,6 @@
 # Greedy Algorithms
 
-Greedy algorithms are *greedy*. They don't look into the future to choose the *global optimal solution*. They are only interested in **optimal solution locally**.
-
-Some of these algorithms are:
-
-* Largest number
-* Minimum refill problem.
+Greedy algorithms are *greedy*. They don't look into the future to choose the **global** *optimal solution*. They are only interested in **optimal solution locally**.
 
 ## Main ingredients
 
@@ -27,7 +22,13 @@ General Strategy:
 
 ## Problems
 
+### Largest number
+
+> As the last question of a successful interview, your boss gives you a few pieces of paper with numbers on it and asks you to compose a largest number from these numbers. The resulting number is going to be your salary, so you are very much interested in maximizing this number. How can you do this?
+
 ### Minimum refuel problem
+
+> You are going to travel to another city that is located 𝑑 miles away from your home city. Your car can travel at most 𝑚 miles on a full tank and you start with a full tank. Along your way, there are gas stations at distances stop 1 , stop 2 , . . . , stop 𝑛 from your home city. What is the minimum number of refills needed?
 
 ### Celebration party problem
 
@@ -35,9 +36,9 @@ General Strategy:
 >
 > But you know that for a teacher to work with a group of children  efficiently children of that group should be of relatively the same age.  More specifically age of any two children in the same group should  differ by at most, one year. 
 >
-> Also, you want to minimize the number of groups. Because you want  to hire fewer teachers, and spend the money on presents and other kinds  of entertainment for the children. So, you need to divide children into  the minimum possible number of groups. Such that the age of any two  children in any group differs by at most one year.
+> Also, you want to minimize the number of groups. Because you want  to hire fewer teachers, and spend the money on presents and other kinds  of entertainment for the children. So, you need to divide children into  the minimum possible number of groups. Such that the age of any two children in any group differs by at most one year.
 
-Naive solution would be to check all grouping options, as each children can be included or excluded, the time complexity is **Ω(n^2)**.
+Naive solution would be to check all grouping options, as each children can be included or excluded, the time complexity is $$\Omega(2^n)$$.
 
 <img src="assets/Screenshot from 2021-02-06 21-31-53.png" style="zoom:20%">
 
