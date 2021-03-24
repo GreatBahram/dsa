@@ -3,10 +3,10 @@ from typing import List
 DENOMINATIONS: List[int] = [10, 5, 1]
 
 
-def get_change(m: int) -> int:
+def get_change(money: int) -> int:
     count = 0
     for denomination in DENOMINATIONS:
-        q, m = divmod(m, denomination)
+        q, money = divmod(money, denomination)
         count += q
     return count
 
