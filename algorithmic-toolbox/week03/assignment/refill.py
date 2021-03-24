@@ -18,8 +18,8 @@ def min_refill(stations: List[Number], limit: int) -> int:
         last_refill = current_refill
 
         # find the farthest point, if it is possible:
-        # first condition: checks to make sure we are reached to the destination
-        # second condition: is this the farthest stations?
+        # first condition: if we haven't reached to the destination
+        # second condition: and if it is possible to go futher
         while (current_refill < len(stations) - 1) and (
             stations[current_refill + 1] - stations[last_refill] <= limit
         ):
