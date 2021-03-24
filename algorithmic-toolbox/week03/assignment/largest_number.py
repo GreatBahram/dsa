@@ -3,7 +3,25 @@ import sys
 from typing import List
 
 
-def find_largest_number(numbers: List[int]) -> int:
+def largest_number(nums: List[int]) -> str:
+    """
+    Naive apporach:
+    Unfortunately this only works for single digit numbers.
+    """
+    largest_combination: List[int] = []
+    while nums:
+        max_digit = -math.inf
+        for n in nums:
+            if max_digit < n:
+                max_digit = n
+
+        nums.remove(max_digit)
+        largest_combination.append(max_digit)
+
+    return "".join(str(n) for n in largest_combination)
+
+
+def find_largest_number(numbers: List[int]) -> str:
     largest_combination: List[int] = []
     while numbers:
         max_digit = 0
