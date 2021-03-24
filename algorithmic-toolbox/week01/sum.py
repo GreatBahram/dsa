@@ -1,5 +1,4 @@
-import sys
+"""Compute the sum of two single digit numbers."""
 
-inputs = sys.stdin.readline()
-nums = map(int, inputs.split())
-print(sum(nums))
+numbers = map(int, input().split())
+print(sum(numbers))
