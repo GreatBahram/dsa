@@ -1,10 +1,12 @@
-# Uses python3
 import random
 import sys
 from typing import List, Tuple
 
 
 def partition3(a: List[int], l: int, r: int) -> Tuple[int, int]:
+    """
+    Partition3 solves the equal number problem.
+    """
     i = l
     lt = l
     gt = r
@@ -24,7 +26,12 @@ def partition3(a: List[int], l: int, r: int) -> Tuple[int, int]:
     return lt, gt
 
 
-def partition2(a, l, r) -> int:
+def partition2(a: List[int], l: int, r: int) -> int:
+    """
+    Return the final postion of the pivot, and move
+    all smaller items to the left of the pivot and
+    larger one to the right.
+    """
     pivot = a[l]
     j = l
     for i in range(l + 1, r + 1):
@@ -40,6 +47,10 @@ def partition2(a, l, r) -> int:
 
 def non_recursive_qsort(array: List[int]):
     """
+    Quicksort suffers from a deep stack calls, which normally this problem is solved
+    using Tail Recursion Elimination, or other one. Here we by pass that.
+    And Quicksort by default does everything in constant space, while here used O(n),
+    so don't use this in any production system.
     Easy way, with some additional space!
     """
     if len(array) < 2:
