@@ -5,7 +5,8 @@ from typing import List, Tuple
 
 def partition3(a: List[int], l: int, r: int) -> Tuple[int, int]:
     """
-    Partition3 solves the equal number problem.
+    3-way partition which solves the equal number problem or
+    array with few unique elements.
     """
     i = l
     lt = l
@@ -20,7 +21,6 @@ def partition3(a: List[int], l: int, r: int) -> Tuple[int, int]:
             a[i], a[lt] = a[lt], a[i]
             lt += 1
             i += 1
-            pass
         else:
             i += 1
     return lt, gt
@@ -50,7 +50,8 @@ def non_recursive_qsort(array: List[int]):
     Quicksort suffers from a deep stack calls, which normally this problem is solved
     using Tail Recursion Elimination, or other one. Here we by pass that.
     And Quicksort by default does everything in constant space, while here used O(n),
-    so don't use this in any production system.
+    so don't use this in any production system. But we solved the 3-way partition
+    using extra space.
     Easy way, with some additional space!
     """
     if len(array) < 2:
