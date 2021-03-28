@@ -8,13 +8,13 @@ In the change problem that we solved in the third week, using the Greedy algorit
 # It will return 25, 10, 5; while it could have returned 2 20 coins.
 ```
 
-If we try to solve this problem by combination of recursive approach plus comparing different approach:
+It is possible to solve this problem by combination of recursive approach:
 
 * Imagine the denominations are: 6, 5, 1.
 
 * What is the minimum number of coins to change 9 cents?
 
-  ```shell
+  ```python
   min_num_coins(9) = min(min_num_coins(9 - 6), min_num_coins(9 - 5), min_num_coins(1)) + 1
   ```
 
@@ -22,11 +22,11 @@ It seems pretty rationale, but how fast is the recursive approach?
 
 <img src="assets/dynamic-01.png" style="zoom:25%" />
 
-The depth of this very **huge** and there is **redundancy** as well. We are going to solve the disadvantage of this method using dynamic programming.
+The depth of this very **huge** and there is **redundancy** as well. We are going to solve these problems using **Dynamic Programming**.
 
 <img src="assets/dynamic-02.png" style="zoom:25%" />
 
-Here the idea is, instead of going from right to left (in recursive approach), we go from left to right. Firstly we calculate the lower amounts and we don't need a recursive tree.
+Here the idea is, instead of going from right to left (i.e. recursive approach), we go from left to right. Firstly we calculate the lower amounts, so we don't need the recursive calls, by the time we reach to n we can easily detect the optimal solution.
 
 ## Introduction
 
@@ -45,8 +45,8 @@ Don't count the memoized recursions, you just do it one time and use other time.
 
 There are two main approaches in dynamic programming:
 
-1. Top-down approach: we use recursion here.
-2. Bottom-up: We try to minimize the recursion using the Memoization technique. 
+1. **Top-down** approach: we use recursion here.
+2. **Bottom-up**: We try to minimize the recursion using the Memoization technique. 
 
 ## Problems
 
@@ -55,16 +55,13 @@ There are two main approaches in dynamic programming:
 We are trying to say you only need the two previous value in this implementation to have the answer.
 
 ```python
-memo = {}
+memo = {0: 0, 1: 1, 2: 2}
 
 def fib(n: int):
-    """In this implementation, it takes a huge space, as we save all Fibonacci series inside the mapping object."""
-    if n <= 2:
-        return n
-    memo[n] = fib(n - 1) + fib(n - 2)
+    """This implementation uses O(n) space, as we save all Fibonacci series inside the mapping object."""
+    if n not in memo:
+    	memo[n] = fib(n - 1) + fib(n - 2)
     return memo[n]
-
-# But, because we want to calculate them in topological sort (DAG), we can go for this one:
 
 # In the below implementation, we can reduce the space complexity to a constant by only holding the last two values, as we are going from bottom to up we don't the old values in the future.
 memo = {}
