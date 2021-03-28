@@ -1,10 +1,17 @@
+"""
+Closest Point problem:
+https://www.geeksforgeeks.org/closest-pair-of-points-using-divide-and-conquer-algorithm/
+https://www.youtube.com/watch?v=3pUOv_ocJyA
+https://www.youtube.com/watch?v=7tiafUFrlBw
+"""
 import math
 import sys
+from typing import NamedTuple
 
 
-class Point:
-    def __init__(self, x, y):
-        self.x, self.y = x, y
+class Point(NamedTuple):
+    x: int
+    y: int
 
 
 def euclidean_distance(p1: Point, p2: Point) -> int:
@@ -13,39 +20,59 @@ def euclidean_distance(p1: Point, p2: Point) -> int:
     return math.sqrt((xdist * xdist) + (ydist * ydist))
 
 
-def brute_force(points, n):
+def brute_force(points):
+    """
+    Time complexity: O(n**2)
+    space complexity: O(1)
+    """
     min_distance = math.inf
-    for i in range(n):
-        for j in range(i + 1, n):
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
             distance = euclidean_distance(points[i], points[j])
             if distance < min_distance:
                 min_distance = distance
     return min_distance
 
 
-def closest_distance(P, Q, n):
-    if len(P) < 4:
-        return brute_force(P, n)
+def closest_distance(Px, Py):
+    if len(Px) < 4:
+        return brute_force(Px)
 
     # split the data into two halves, according to the median point
-    mid: int = n // 2
-    mid_point: Point = P[mid]
+    mid: int = len(Px) // 2
+    mid_point: Point = Px[mid]
 
-    dl = closest_distance(P[:mid], Q, mid)
-    dr = closest_distance(P[mid:], Q, n - mid)
+    x_left = Px[:mid]
+    x_right = Px[mid:]
+
+    y_left = []
+    y_right = []
+
+    for p in Py:
+        if p.x < mid_point.x:
+            y_left.append(p)
+        else:
+            y_right.append(p)
+
+    # find the minimum distance on left and right side points
+    dl = closest_distance(x_left, y_left)
+    dr = closest_distance(x_right, y_right)
 
     d = min(dl, dr)
 
-    strips = [p for p in Q if abs(q.x - mid_point.x) < d]
-    return min(d, strip_closest(strips, len(strips), d))
+    # find points that are at most 2d far from mid_point
+    strips = [p for p in Py if mid_point.x - d <= p.x <= mid_point.x + d]
+    return min(d, strip_closest(strips, d))
 
 
-def strip_closest(strips, size, delta):
+def strip_closest(strips, delta):
     min_distance = delta
-    for i in range(size):
-        for j in range(i + 1, size):
-            if (strips[i].y - strips[j].y) < min_distance:
-                min_distance = euclidean_distance(strips[i], strips[j])
+    for i in range(len(strips)):
+        for j in range(i + 1, min(i + 7, len(strips))):
+            distance = euclidean_distance(strips[i], strips[j])
+            if distance < min_distance:
+                min_distance = distance
+
     return min_distance
 
 
@@ -59,7 +86,7 @@ if __name__ == "__main__":
 
     points = [Point(x, y) for x, y in zip(xs, ys)]
 
-    P = sorted(points, key=lambda p: p.x)
-    Q = sorted(points, key=lambda p: p.y)
+    Px = sorted(points, key=lambda p: p.x)
+    Py = sorted(points, key=lambda p: p.y)
 
-    print("{0:.9f}".format(minimum_distance(P, Q, n)))
+    print("{0:.9f}".format(closest_distance(Px, Py)))
