@@ -57,6 +57,28 @@ def coin_change(amount):
     return NOT_FOUND if math.isinf(output) else output
 
 
+def money_change(amount: int) -> int:
+    """
+    Bottom-up approach: Full tabulation!!
+    """
+    row = [0] + [math.inf] * amount
+    memo = [list(row) for _ in range(len(DENOMINATIONS) + 1)]
+    memo[1] = [i for i in range(amount + 1)]
+
+    for idx, coin in enumerate(DENOMINATIONS, start=1):
+        for col_idx in range(1, amount + 1):
+            previous_value = memo[idx - 1][col_idx]
+            if col_idx >= coin:
+                memo[idx][col_idx] = min(previous_value, memo[idx][col_idx - coin] + 1)
+            else:
+                # we can use this coin, so use the previous value
+                memo[idx][col_idx] = previous_value
+
+    minimum_change = memo[-1][-1]
+
+    return NOT_FOUND if math.isinf(minimum_change) else minimum_change
+
+
 def get_change(money: int) -> int:
     """Solve Money change problem using bottom-up approach.
     https://dev.to/stuttskl/making-change-with-dynamic-programming-481p
