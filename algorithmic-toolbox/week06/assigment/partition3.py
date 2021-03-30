@@ -2,6 +2,37 @@ import sys
 from typing import List
 
 
+def naive_partition3(nums: List[int]) -> bool:
+    """
+    Brute force approach in order to capture the essence
+    of this problem.
+    """
+    target, remaining = divmod(sum(nums), 3)
+    if remaining:
+        return False
+
+    def sum_subset3(nums: List[int], n: int, a: int, b: int, c: int) -> bool:
+        if a == 0 and b == 0 and c == 0:
+            return True
+        if n < 0:
+            return False
+
+        used_in_a = used_in_b = used_in_c = False
+
+        if a - nums[n] >= 0:
+            used_in_a = sum_subset3(nums, n - 1, a - nums[n], b, c)
+
+        if not used_in_a and b - nums[n] >= 0:
+            used_in_b = sum_subset3(nums, n - 1, a, b - nums[n], c)
+
+        if (not used_in_a and not used_in_b) and c - nums[n] >= 0:
+            used_in_c = sum_subset3(nums, n - 1, a, b, c - nums[n])
+
+        return used_in_a or used_in_b or used_in_c
+
+    return sum_subset3(nums, len(nums) - 1, target, target, target)
+
+
 def partition3(array: List[int]) -> bool:
     """Backtrack solution."""
     target, remaining = divmod(sum(array), 3)
