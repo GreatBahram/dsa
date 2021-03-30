@@ -9,9 +9,9 @@ def naive_knapsack(n: int, constraint: int) -> int:
     https://www.youtube.com/watch?v=xOlhR_2QCXY
     """
     if n == 0 or constraint == 0:
-        return 0
+        result = 0
     elif weights[n] > constraint:
-        return naive_knapsack(n - 1, constraint)
+        result = naive_knapsack(n - 1, constraint)
     else:
         tmp1 = values[n] + naive_knapsack(n - 1, constraint - weights[n])
         tmp2 = naive_knapsack(n - 1, constraint)  # no do not select this item
@@ -21,6 +21,7 @@ def naive_knapsack(n: int, constraint: int) -> int:
 
 def knapsack(n, constraint):
     """
+    Top-down approach
     https://www.youtube.com/watch?v=xOlhR_2QCXY
     """
     row = [0] + [-1 for i in range(constraint)]
@@ -35,9 +36,9 @@ def knapsack(n, constraint):
         elif weights[n] > constraint:
             result = top_down_knapsack(n - 1, constraint)
         else:
-            tmp1 = values[n] + top_down_knapsack(n - 1, constraint - weights[n])
-            tmp2 = top_down_knapsack(n - 1, constraint)  # no do not select this item
-            result = max(tmp1, tmp2)
+            include = values[n] + top_down_knapsack(n - 1, constraint - weights[n])
+            exclude = top_down_knapsack(n - 1, constraint)  # no do not select this item
+            result = max(include, exclude)
         memo[n][constraint] = result
         return result
 
