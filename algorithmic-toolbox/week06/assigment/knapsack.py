@@ -28,6 +28,23 @@ def optimal_weight(weights: List[int], constraint: int) -> int:
     return top_down_knapsack(len(weights) - 1, constraint)
 
 
+def bt_knapsack(weights: List[int], constraint: int):
+    row = [0] * (constraint + 1)
+    memo = [list(row) for _ in range(len(weights))]
+    for j in range(len(weights)):
+        for i in range(constraint + 1):
+            if j == 0 or i == 0:
+                memo[j][i] = 0
+            elif weights[j] <= i:
+                memo[j][i] = max(
+                    memo[j - 1][i], weights[j] + memo[j - 1][i - weights[j]]
+                )
+            else:
+                memo[j][i] = memo[j - 1][i]
+
+    return memo[-1][-1]
+
+
 if __name__ == "__main__":
     input = sys.stdin.read()
     constraint, n, *weights = list(map(int, input.split()))
