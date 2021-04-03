@@ -124,6 +124,7 @@ There are two main ways to traverse a tree:
        print(tree.key)
        inorder_traversal(tree.right)
    
+   
    def preorder_traversal(tree):
        """
        Preorder and Postorder make sense for any
@@ -135,11 +136,40 @@ There are two main ways to traverse a tree:
        preorder_traversal(tree.left)
        preorder_traversal(tree.right)
    
+   
    def postorder_traversal(tree):
+       """
+       Post order traversal can be used to evaluate a mathematic
+       expression.
+       """
        if len(tree) < 1:
            return None
-       
+       postorder_traversal(tree.left)
+       postorder_traversal(tree.right)
+       print(tree.key)
    ```
 
-2. Breadth-first: we traverse all nodes at one level before progressing to the next level.
+2. Breadth-first: we traverse all nodes at the one level before progressing to the next level. We'd use a **queue** instead of a **stack**.
 
+   ```python
+   def level_traversal(tree):
+       q = Queue()
+       q.enqueu(tree)
+       while not q.empty():
+           node = q.dequeue()
+           print(node)
+           if q.left:
+               q.enqueue(q.left)
+           if q.right:
+               q.enqueue(q.right)       
+   ```
+
+* When working with a tree, recursive algorithms are common.
+
+## Problems
+
+- Check brackets in the code
+- Tree height
+- Network packet processing simulation
+- Stack with maximum
+- Maximum in Sliding Window
