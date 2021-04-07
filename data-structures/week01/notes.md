@@ -52,7 +52,7 @@ Before adding the tail pointer all front actions were cheap but the operations t
 
 ## Stacks and Queues
 
-Stack (LIFO) can be implemented with either an array or a linked-list. The array might have a fixed-size limitation, on the other hand, with linked-list you're free to add as many as you want.
+Stack (LIFO) can be implemented with either an array or a linked-list (You simply push-front for each item, and for popping you do pop-front). The array might have a fixed-size limitation, on the other hand, with linked-list you're free to add as many as you want.
 
 ```python
 class Stack:
@@ -73,7 +73,9 @@ class Stack:
 
 Queue (FIFO)
 
-Queues can be implemented with either a **linked-list** (with tail pointer) or an **array**. Remember, each queue operation should be $$O(1)$$.
+Queues can be implemented with either a **linked-list** (with tail pointer) (Enqueue: `List.PushBack`, Dequeue: `PopFront`)or an **array**. Remember, each queue operation should be $$O(1)$$.
+
+https://www.codesdope.com/course/data-structures-queue/
 
 ```python
 class Queue:
