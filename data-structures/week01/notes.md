@@ -168,8 +168,8 @@ There are two main ways to traverse a tree:
 
 ## Problems
 
-- Check brackets in the code
-- Tree height
-- Network packet processing simulation
-- Stack with maximum
-- Maximum in Sliding Window
+- Check brackets in the code: Stack exercise.
+- Tree height: testing our understanding of tree.
+- Network packet processing simulation: using queue or dequeue sometimes saves your ass immensely.
+- Stack with maximum: using auxiliary data structure is perhaps better than some stupid ideas.
+- Maximum in Sliding Window: You should appreciate dequeue more than you think.
