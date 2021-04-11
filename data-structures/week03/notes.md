@@ -1,4 +1,4 @@
-## Priority Queue
+# Priority Queue
 
 A priority queue is a generalization of a queue where each element is assigned a priority and elements come out in order by priority.
 
@@ -63,7 +63,7 @@ How to keep a tree shallow?
 
 ### Pseudo code (MaxHeap)
 
-Example code for MinHeap
+[Example code for MinHeap](https://www.educative.io/edpresso/heap-implementation-in-python)
 
 <img src="assets/priority-queue-03.png" style="zoom:60%"/>
 
@@ -80,3 +80,5 @@ Example code for MinHeap
 <img src="assets/priority-queue-09.png" style="zoom:50%"/>
 
 <img src="assets/priority-queue-10.png" style="zoom:60%"/>
+
+## Priority Queue (Heap Sort)
