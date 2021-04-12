@@ -81,4 +81,52 @@ How to keep a tree shallow?
 
 <img src="assets/priority-queue-10.png" style="zoom:60%"/>
 
-## Priority Queue (Heap Sort)
+## Heap Sort
+
+We will use binary heap to design heap sort algorithm which is fast and efficient sorting algorithm. We can use priority queue to handle the heap sort algorithm such as following:
+
+<img src="assets/heap-sort-01.png" style="zoom:60%"/>
+
+* The resulting algorithm is comparison-based and has running time $$O(n \lg n)$$.
+* Heap sort is a natural generalization of selection sort: instead of simply scanning test rest of the array to find maximum value, use a smart data structure.
+* **Problem**: We are using **additional space** to store the priority queue.
+
+*In-place heap sort algorithm is possible*. For this, we will first turn a give array into a heap by permuting its elements.
+
+Turn an array into a heap:
+
+<img src="assets/heap-sort-02.png" style="zoom:50%"/>
+
+* We repair the heap property going from bottom to top, running time: $$O(n \lg n)$$.
+
+In-place Heap Sort(change the array into an increasing order):
+
+<img src="assets/heap-sort-03.png" style="zoom:60%"/>
+
+* It is in-place, we don't need additional space.
+* It is efficient, even in the worst-case is $$O(n \lg n)$$.
+
+#### Building a Heap running time
+
+* The running time of `BuildHeap` is $$O(n \lg n)$$ since we call `SiftDown` for $$O(n)$$ nodes ($$O(\frac{n}{2}.\lg n)$$).
+* If a node is already close to the leaves the sifting it down is fast. And we have many such nodes! The question is was our estimation of the running time of `BuildHeap` too pessimistic?
+
+<img src="assets/heap-sort-04.png" style="zoom:50%"/>
+
+<img src="assets/heap-sort-05.png" style="zoom:60%"/>
+
+* This new insight does not change the running time of heap sort, as we have to do $$n - 1$$ `extract_max` operations. However, this helps to solve another problem faster, k largest or k smallest, this problem can be solved in $$O(n)$$ if $$k \leq \frac{n}{\lg n}$$. Because we first have to create a heap in $$O(n)$$ then we need to do k extract_max method:
+
+  <img src="assets/heap-sort-06.png" style="zoom:60%"/>
+
+Running time: $$O(n + k \lg n)$$, if $$k \leq \frac{n}{\lg n}$$ then the running time is $$O(n)$$.
+
+<img src="assets/heap-sort-07.png" style="zoom:50%"/>
+
+For implementing a binary heap using zero-based array we can use the following formula:
+
+<img src="assets/heap-sort-08.png" style="zoom:70%"/>
+
+Binary Min-Heap can be used when we want to extract an item with minimum priority not its maximum:
+
+<img src="assets/heap-sort-09.png" style="zoom:50%"/>
