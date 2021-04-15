@@ -83,12 +83,12 @@ How to keep a tree shallow?
 
 ## Heap Sort
 
-We will use binary heap to design heap sort algorithm which is fast and efficient sorting algorithm. We can use priority queue to handle the heap sort algorithm such as following:
+We will use binary heap to design heap sort algorithm which is fast and efficient sorting algorithm. **We can use priority queue to handle the heap sort algorithm** such as following:
 
 <img src="assets/heap-sort-01.png" style="zoom:60%"/>
 
 * The resulting algorithm is comparison-based and has running time $$O(n \lg n)$$.
-* Heap sort is a natural generalization of selection sort: instead of simply scanning test rest of the array to find maximum value, use a smart data structure.
+* **Heap sort is a natural generalization of selection sort**: instead of simply scanning test rest of the array to find maximum value, use a smart data structure.
 * **Problem**: We are using **additional space** to store the priority queue.
 
 *In-place heap sort algorithm is possible*. For this, we will first turn a give array into a heap by permuting its elements.
@@ -99,7 +99,7 @@ Turn an array into a heap:
 
 * We repair the heap property going from bottom to top, running time: $$O(n \lg n)$$.
 
-In-place Heap Sort(change the array into an increasing order):
+In-place Heap Sort (change the array into an increasing order):
 
 <img src="assets/heap-sort-03.png" style="zoom:60%"/>
 
@@ -108,7 +108,7 @@ In-place Heap Sort(change the array into an increasing order):
 
 #### Building a Heap running time
 
-* The running time of `BuildHeap` is $$O(n \lg n)$$ since we call `SiftDown` for $$O(n)$$ nodes ($$O(\frac{n}{2}.\lg n)$$).
+* The running time of `BuildHeap` is $$O(n \lg n)$$ since we call `SiftDown` for $$O(n)$$ nodes or more specifically: $$O(\frac{n}{2}.\lg n)$$.
 * If a node is already close to the leaves the sifting it down is fast. And we have many such nodes! The question is was our estimation of the running time of `BuildHeap` too pessimistic?
 
 <img src="assets/heap-sort-04.png" style="zoom:50%"/>
@@ -242,7 +242,7 @@ int root (int Arr[ ] ,int i)
 
 When we use **weighted-union** with **path compression** it takes $$\lg^* n$$ for each union find operation,where $$n$$ is the number of elements in the set.
 
-* $$\lg^* n$$ is the iterated logarithmic function which computes the number of times you have to take log of N till the value of $$n$$ is less or equal than 1.
+* $$\lg^* n$$ is the **iterated logarithmic** function which computes the number of times you have to take log of N till the value of $$n$$ is less or equal than 1.
 * $$\lg^* n$$ is much better than $$\lg n$$, as its value reaches at most up to 5 in the real world.
 
 
@@ -254,3 +254,5 @@ When we use **weighted-union** with **path compression** it takes $$\lg^* n$$ fo
 
 
 <img src="assets/disjoint-sets-07.png" style="zoom:50%"/>
+
+* When using path comprehension, $$rank[i]$$ is no longer equal to the height of the subtree rooted at $$i​$$, i.e. path comprehension decreases the height of each tree.
