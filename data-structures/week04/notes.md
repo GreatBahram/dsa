@@ -45,7 +45,7 @@ A **set** is just a hash table which only holds keys not values, and has three m
 * Operations work in $$O(c + 1)$$ where $$c$$ is the longest chain.
 * How to make both $$c$$ and $$m$$ small?
 
-### Hash functions
+## Hash functions
 
 * Hash functions should be **deterministic**, this means we cannot use random values despite its good characteristics, such as uniformity.
 * **Fast** to compute.
@@ -150,3 +150,37 @@ To wrap it up, you first apply a random hash function from polynomial family to 
 * So if choose $p> mL$ then this would a really good universal hash function.
 
 <img src="assets/hash-functions-20.png" style="zoom:25%"/>
+
+## Searching Patterns 
+
+### Finding pattern in Text
+
+We have a text (T) and a pattern (P), our goal is to find all positions that match the pattern.
+
+ <img src="assets/pattern-matching-naive-01.png" style="zoom:50%"/>
+
+ <img src="assets/pattern-matching-naive-02.png" style="zoom:50%"/>
+
+ <img src="assets/pattern-matching-naive-03.png" style="zoom:50%"/>
+
+ <img src="assets/pattern-matching-naive-04.png" style="zoom:50%"/>
+
+ <img src="assets/pattern-matching-naive-05.png" style="zoom:50%"/>
+
+### Rabin-Karp's Algorithm 
+
+We need to compare $P$ with all substrings $S$ of $T$ of length $|P$|. The idea is that we can make the previous algorithm faster using hashing algorithm. if $h(P) \neq h(S)$, then definitely $P \neq S$. However, if $h(P) = h(S)$, call `AreEqual(P, S)` to make sure. We hope this would happen rarely, the collision, in fact we can somehow increase this odd, by choosing a large prime number (`PolyHash`). if $P \neq S$, the probability $Pr[h(P) = h(S)]$ is at most $\frac{|P|}{p}$ for polynomial hashing.
+
+<img src="assets/pattern-matching-naive-06.png" style="zoom:50%"/>
+
+   False alarms: False alarm is the event when $P$ is compared with $T[i..i+|P|-1]$, but $P \neq T[i..i+|P| -1]$. The probability of "false alarm" is at most $\frac{|P|}{p}$, the total number of false alarm will be $(|T|-|P|+1)\frac{|P|}{p}$, which can be made small by select $p>>|T||P|$.
+
+<img src="assets/pattern-matching-naive-07.png" style="zoom:30%"/>
+
+<img src="assets/pattern-matching-naive-08.png" style="zoom:30%"/>
+
+<img src="assets/pattern-matching-naive-09.png" style="zoom:30%"/>
+
+<img src="assets/pattern-matching-naive-10.png" style="zoom:50%"/>
+
+* Save as our naive algorithm but can be improved, using precomputed hash.
