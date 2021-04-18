@@ -128,3 +128,25 @@ For any $a,b$ and $p$ the following properties of module arithmetics are true:
 Efficiency of our algorithm:
 
 <img src="assets/hash-functions-17.png" style="zoom:70%"/>
+
+Hash strings - cardinality
+
+All hash functions in the family have a cardinality of $$P$$, where $P$ is very big prime number, and what we want is the cardinality of hash functions to be the same size as the size of our hash table.
+
+How to fix this?
+
+First we design a complex transformation from strings to numbers, from 0 to $m - 1$, so we select the cardinality of $m$, we want a function from strings to numbers, from 0 to $m-1$.
+
+To do that, we first apply our random hash function from *polynomial family* to strings, and we get some integer number modulo $P$ and then we can apply a random hash function from the universal family for integers less than $P$ and we get a number between $0$ and $m-1$.
+
+To wrap it up, you first apply a random hash function from polynomial family to the string, and you get a number module P, then you apply another hash function to convert this number into a number between 0 and $m-1$. The second hash function for converting the number from first stage is selected from universal family of integers.
+
+* Choose cardinality $m$ and prime number $p > m$. Choose a random hash function $h$ from the polynomial hash family $P_p$. Choose a random hash function $h_{int}$ from the universal family $H_p$ for integers between 0 and $p - 1$. Then use hash function $h_m(x)=h_{int}(h(x))$.
+
+<img src="assets/hash-functions-18.png" style="zoom:30%"/>
+
+<img src="assets/hash-functions-19.png" style="zoom:30%"/>
+
+* So if choose $p> mL$ then this would a really good universal hash function.
+
+<img src="assets/hash-functions-20.png" style="zoom:25%"/>
