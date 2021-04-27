@@ -154,7 +154,7 @@ There are two main ways to traverse a tree:
    ```python
    def level_traversal(tree):
        q = Queue()
-       q.enqueu(tree)
+       q.enqueue(tree)
        while not q.empty():
            node = q.dequeue()
            print(node)
