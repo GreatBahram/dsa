@@ -56,7 +56,7 @@ Basic operations:
 
 * **Insert**: adds node with key $k$ to the tree. Here, we can use a modified version of **find** function to find the appropriate place to put the key.
 
-* **Delete**: removes node $N$ from the tree. Before you remove you should find the closest item which we expect to be the leftmost node in the right subtree:
+* **Delete**: removes node $N$ from the tree. Before you remove you should find the closest item which we expect it to be the leftmost node in the right subtree:
 
   <img src="assets/bst-14.png" style="zoom:50%">
 
@@ -80,7 +80,7 @@ How long do Binary Search Tree operations take?
 
     <img src="assets/bst-17.png" style="zoom:50%">
 
-* Our goal is to want left and right subtrees to have approximately the same size (**Balance**). Suppose it is perfectly balanced:
+* Our goal is the left and right subtrees to have approximately the same size (**Balance**). Suppose it is perfectly balanced:
 
   * each subtree half the size of its parent.
   * after $log_2(n)$ levels, subtree of size 1.
@@ -96,3 +96,47 @@ How long do Binary Search Tree operations take?
 * **How to keep a tree balanced? AVL trees!**
 
 ## AVL Trees
+
+### Intro
+
+We learned that in order to our search operations be fast enough we need to maintain a way to balance the tree. But before that we need a way to measure balance tree.
+
+For that purpose we need to calculate the height of the tree:
+
+<img src="assets/avl-01.png" style="zoom:50%">
+
+The way we calculate the height of the tree:
+
+<img src="assets/avl-02.png" style="zoom:50%">
+
+In order to reduce the computational cost we save the height as an attribute on each node:
+
+<img src="assets/avl-03.png" style="zoom:70%">
+
+<img src="assets/avl-04.png" style="zoom:50%">
+
+* So our measure to understand whether the tree is balanced or not is the height of each subtree. We'd say the tree is balanced iff:
+
+<img src="assets/avl-05.png" style="zoom:50%">
+
+* Need to show that AVL property implies $Height=O(\lg(n))$. Alternatively, show that large height implies many nodes.
+
+<img src="assets/avl-06.png" style="zoom:50%">
+
+<img src="assets/avl-07.png" style="zoom:50%">
+
+<img src="assets/avl-08.png" style="zoom:60%">
+
+<img src="assets/avl-09.png" style="zoom:50%">
+
+<img src="assets/avl-10.png" style="zoom:50%">
+
+### Implementation
+
+There two places that we need to take care of our balanced tree:
+
+* insertion
+* deletion
+
+We need a new insertion algorithm that involves rebalancing the tree to maintain the AVL property.
+
