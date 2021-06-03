@@ -41,13 +41,13 @@ class LinkedList:
             yield node
             node = node.next
 
-    def add_first(self, node: None):
+    def add_first(self, node: None) -> None:
         if not isinstance(node, Node):
             raise ValueError(f"expect Node object, got {type(node)}")
         node.next = self.head
         self.head = node
 
-    def add_last(self, node: Node):
+    def add_last(self, node: Node) -> None:
         if not isinstance(node, Node):
             raise ValueError(f"expect Node object, got {type(node)}")
         if self.head is None:
@@ -57,7 +57,7 @@ class LinkedList:
             pass
         current_node.next = node
 
-    def remove_node(self, target_node_data: Any):
+    def remove_node(self, target_node_data: Any) -> None:
         if self.head is None:
             raise Exception("Linked List is empty")
         if self.head.data == target_node_data:

@@ -4,7 +4,7 @@
 
 ### Array
 
-There are two ways to store arrays in memory, namely row-major and column-major.
+There are two ways to store arrays in memory, namely **row-major** and **column-major** (the first index changes rapidly).
 
 Array's items can be accessed in $$O(1)$$ using the following formula:
 
