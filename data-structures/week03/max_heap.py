@@ -64,9 +64,9 @@ def right_child(idx: int) -> int:
     return 2 * idx + 2
 
 
-def _siftup(array, idx: int):
+def _siftup(array, idx: int) -> None:
     # if parent item is smaller than array[idx], swap it
-    parent_idx = (idx - 1) // 2 
+    parent_idx = (idx - 1) // 2
 
     if parent_idx < 0:
         return None
@@ -76,7 +76,7 @@ def _siftup(array, idx: int):
         _siftup(array, parent_idx)
 
 
-def _siftdown(array, idx: int):
+def _siftdown(array, idx: int) -> None:
     """
     Find maximum value from left or right child
     swap it and do this again.
