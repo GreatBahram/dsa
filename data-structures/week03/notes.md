@@ -240,10 +240,22 @@ int root (int Arr[ ] ,int i)
 }
 ```
 
-When we use **weighted-union** with **path compression** it takes $$\lg^* n$$ for each union find operation,where $$n$$ is the number of elements in the set.
+When we use **weighted-union** with **path compression** it takes $$\lg^* n$$ for each union or find operation, and $$n$$ is the number of elements in the set.
 
 * $$\lg^* n$$ is the **iterated logarithmic** function which computes the number of times you have to take log of N till the value of $$n$$ is less or equal than 1.
-* $$\lg^* n$$ is much better than $$\lg n$$, as its value reaches at most up to 5 in the real world.
+
+  ```python
+  from math import log2
+ 
+  def logstar(n: int) -> int:
+      counter = 0
+      while n > 1:
+          n = log2(n)
+          counter += 1
+      return counter
+  ```
+
+* $$\lg^* n$$ is much better than $$\lg n​$$, as its value reaches at most up to 5 in the real world.
 
 
 
