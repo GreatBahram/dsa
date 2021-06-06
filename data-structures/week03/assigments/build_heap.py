@@ -1,7 +1,7 @@
 from typing import List
 
 
-def selectino_sort_swaps(data):
+def selection_sort_swaps(data):
     """Build a heap from data in-place.
     Returns a sequence of swaps performed by the algorithm.
     Time complexity: O(n**2)

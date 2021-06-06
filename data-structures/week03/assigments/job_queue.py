@@ -33,10 +33,12 @@ class WorkerMinHeap:
 
 def assign_jobs(n_workers, jobs):
     """
-    The problem with this code is that finding the next_free_worker is hard
+    The problem with this code is that finding the next_free_worker is expensive.
     we have to iterate over next_free_time array.
 
-    It was a MinHeap data structure then finding it was much more pleasant.
+    If it was a min-Heap data structure then finding it would have been less costly.
+
+    Time complexity: O(n_workers)
     """
     result = []
     next_free_time = [0] * n_workers
@@ -49,13 +51,15 @@ def assign_jobs(n_workers, jobs):
 
 
 def effective_assign_jobs(n_workers, jobs):
+    """
+    time complexity: O(log n_workers)
+    """
     result = []
     wmh = WorkerMinHeap(n_workers)
     for job in jobs:
         next_free_time, worker_id = wmh.pop()
         result.append(AssignedJob(worker_id, next_free_time))
         wmh.push(next_free_time + job, worker_id)
-        # next_free_time[next_worker] += job
 
     return result
 
