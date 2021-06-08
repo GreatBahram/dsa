@@ -14,7 +14,9 @@ def naive_get_occurrences(text, pattern) -> List[int]:
     return [i for i in range(n - k + 1) if text[i : i + k] == pattern]
 
 
-def precompute_hashes(text, pattern_length, prime=1_000_000_007, multiplier=263) -> List[int]:
+def precompute_hashes(
+    text: str, pattern_length: int, prime: int = 1_000_000_007, multiplier: int = 263
+) -> List[int]:
     """Compute hashes for all patterns inside the a given string."""
     n = len(text)
     k = pattern_length
