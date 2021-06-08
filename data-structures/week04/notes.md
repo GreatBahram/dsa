@@ -183,4 +183,4 @@ We need to compare $P$ with all substrings $S$ of $T$ of length $|P$|. The idea 
 
 <img src="assets/pattern-matching-naive-10.png" style="zoom:50%"/>
 
-* Save as our naive algorithm but can be improved, using precomputed hash.
+* Same as our naive algorithm but can be improved, using **precomputed** hash. precomputed hash is the the hash of the consecutive items is very similar so we can compute all hashes for all pattern-length substrings and then do the comparison. The running time of this approach is much less than the naive algorithm: $O(|T| + (q - 1)|P|)$, $q$ is the number of occurrences of the pattern in the text.
