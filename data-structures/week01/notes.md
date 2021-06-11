@@ -4,7 +4,7 @@
 
 ### Array
 
-There are two ways to store arrays in memory, namely row-major and column-major.
+There are two ways to store arrays in memory, namely **row-major** and **column-major** (the first index changes rapidly).
 
 Array's items can be accessed in $$O(1)$$ using the following formula:
 
@@ -111,6 +111,26 @@ For binary tree: node contains:
 * right
 * (optional) parent
 
+```python
+def height(tree):
+    if tree is None:
+        return 0
+    return 1 + max(height(tree.left), height(tree.right))
+
+
+def size(tree):
+    """How many nodes are in a given tree."""
+    if tree is None:
+        return 0
+    return 1 + size(tree.left) + size(tree.right)
+```
+
+* The **depth** of a node is the number of edges from the node to the tree's root node. A root node will have a depth of 0 (or 1 depending on our definition).
+* The **height** of a node is the number of edges on the *longest path* from the node to a leaf.
+  A leaf node will have a height of 0.
+
+https://stackoverflow.com/questions/2603692/what-is-the-difference-between-tree-depth-and-height
+
 ### Tree Traversal
 
 There are two main ways to traverse a tree:
@@ -141,8 +161,9 @@ There are two main ways to traverse a tree:
    
    def postorder_traversal(tree):
        """
-       Post order traversal can be used to evaluate a mathematic
-       expression.
+       Post order traversal can be used to evaluate a arithmetic expression.
+       Because in a post-order traversal we evaluate all children fully before
+       evaluating a node itself.
        """
        if len(tree) < 1:
            return None
@@ -156,14 +177,14 @@ There are two main ways to traverse a tree:
    ```python
    def level_traversal(tree):
        q = Queue()
-       q.enqueu(tree)
+       q.enqueue(tree)
        while not q.empty():
            node = q.dequeue()
            print(node)
-           if q.left:
-               q.enqueue(q.left)
-           if q.right:
-               q.enqueue(q.right)       
+           if node.left:
+               q.enqueue(node.left)
+           if node.right:
+               q.enqueue(node.right)
    ```
 
 * When working with a tree, recursive algorithms are common.

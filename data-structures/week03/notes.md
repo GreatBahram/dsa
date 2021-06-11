@@ -81,4 +81,190 @@ How to keep a tree shallow?
 
 <img src="assets/priority-queue-10.png" style="zoom:60%"/>
 
-## Priority Queue (Heap Sort)
+## Heap Sort
+
+We will use binary heap to design heap sort algorithm which is fast and efficient sorting algorithm. **We can use priority queue to handle the heap sort algorithm** such as following:
+
+<img src="assets/heap-sort-01.png" style="zoom:60%"/>
+
+* The resulting algorithm is comparison-based and has running time $$O(n \lg n)$$.
+* **Heap sort is a natural generalization of selection sort**: instead of simply scanning test rest of the array to find maximum value, use a smart data structure.
+* **Problem**: We are using **additional space** to store the priority queue.
+
+*In-place heap sort algorithm is possible*. For this, we will first turn a give array into a heap by permuting its elements.
+
+Turn an array into a heap:
+
+<img src="assets/heap-sort-02.png" style="zoom:50%"/>
+
+* We repair the heap property going from bottom to top, running time: $$O(n \lg n)$$.
+
+In-place Heap Sort (change the array into an increasing order):
+
+<img src="assets/heap-sort-03.png" style="zoom:60%"/>
+
+* It is in-place, we don't need additional space.
+* It is efficient, even in the worst-case is $$O(n \lg n)$$.
+
+#### Building a Heap running time
+
+* The running time of `BuildHeap` is $$O(n \lg n)$$ since we call `SiftDown` for $$O(n)$$ nodes or more specifically: $$O(\frac{n}{2}.\lg n)$$.
+* If a node is already close to the leaves the sifting it down is fast. And we have many such nodes! The question is was our estimation of the running time of `BuildHeap` too pessimistic?
+
+<img src="assets/heap-sort-04.png" style="zoom:50%"/>
+
+<img src="assets/heap-sort-05.png" style="zoom:60%"/>
+
+* This new insight does not change the running time of heap sort, as we have to do $$n - 1$$ `extract_max` operations. However, this helps to solve another problem faster, k largest or k smallest, this problem can be solved in $$O(n)$$ if $$k \leq \frac{n}{\lg n}$$. Because we first have to create a heap in $$O(n)$$ then we need to do k extract_max method:
+
+  <img src="assets/heap-sort-06.png" style="zoom:60%"/>
+
+Running time: $$O(n + k \lg n)$$, if $$k \leq \frac{n}{\lg n}$$ then the running time is $$O(n)$$.
+
+<img src="assets/heap-sort-07.png" style="zoom:50%"/>
+
+For implementing a binary heap using zero-based array we can use the following formula:
+
+<img src="assets/heap-sort-08.png" style="zoom:70%"/>
+
+Binary Min-Heap can be used when we want to extract an item with minimum priority not its maximum:
+
+<img src="assets/heap-sort-09.png" style="zoom:50%"/>
+
+## Disjoint Sets (Union-Find)
+
+* Understanding the problem from the course is a bit challenging, you can read a more simpler introduction on [Hackerearth](https://www.hackerearth.com/practice/notes/disjoint-set-union-union-find/).
+* Union-Find data structure is useful in Graphs for performing various 
+  operations like **connecting nodes**, **finding connected components**.
+
+You have a set of elements S = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}. Here you have 10 elements (N = 10 ).We can use  an array **Arr ** to manage  the connectivity of elements. Arr[ ] indexed by elements of set, having size of N (as N elements in set) and can be used to manage 
+the above operations.
+
+```c
+void initialize(int Arr[ ], int N)
+{
+    for(int i = 0;i<N;i++)
+    Arr[ i ] = i ;
+}
+
+//finding root of an element. This is influenced with the height of the tree
+int root(int Arr[ ],int i)
+{
+    while(Arr[ i ] != i)  //chase parent of current element until it reaches root.
+    {
+     i = Arr[ i ];
+    }
+    return i;
+}
+/*modified union function where we connect the elements by changing the root of one of the element */
+
+int union(int Arr[ ] ,int A ,int B)
+{
+    int root_A = root(Arr, A);       
+    int root_B = root(Arr, B);  
+    Arr[ root_A ] = root_B ;  // which one to hang? as we want to keep the tree
+    // as shallow as we can, we must hang the shorter
+}
+
+bool find(int A,int B)
+{
+    if( root(A)==root(B) )  //if A and B have same root,means they are connected.
+    	return true;
+    else
+    	return false;
+}
+```
+
+<img src="assets/disjoint-sets-02.png" style="zoom:50%"/>
+
+**Union by Rank**
+
+The process of connecting the the tree with less nodes to the larger one is called **weighted_union** operation.
+
+Initially the size of each subset will be one as each subset will  have only one element and we can initialize it in the initialize  function discussed above, size[ ] array will keep track of size of each subset:
+
+```c
+//modified initialize function:
+void initialize( int Arr[ ], int N)
+{
+    for(int i = 0; i < N; i++)
+    {
+        Arr[i] = i ;
+        size[i] = 1;
+	}
+}
+```
+
+**root()** and **find()** function will be same as above. Union function will be modified as we will connect two subsets according to the number of elements in subset.
+
+```c
+void weighted-union(int Arr[ ],int size[ ],int A,int B)
+{
+    int root_A = root(A);
+    int root_B = root(B);
+    if(size[root_A] < size[root_B ])
+    {
+        Arr[ root_A ] = Arr[root_B];
+        size[root_B] += size[root_A];
+	}
+    else
+    {
+        Arr[ root_B ] = Arr[root_A];
+        size[root_A] += size[root_B];
+    }
+}
+```
+
+Now, the height of any tree in our forest is at most $$\lg n$$, this will immediately implies that any operation is computed at $$\lg n$$.
+
+<img src="assets/disjoint-sets-03.png" style="zoom:50%"/>
+
+The union by size/rank heuristic guarantees that union and find methods work in time $$O(\lg n)$$.
+
+**Path compression**
+
+Another improvement is to save the parent when we find it, or other way to say it is to attach each node to its root.
+
+<img src="assets/disjoint-sets-04.png" style="zoom:50%"/>
+
+```c
+// path compression
+int root (int Arr[ ] ,int i)
+{
+    while(Arr[i] != i)
+    {
+        Arr[i] = Arr[Arr[i]]; 
+		i = Arr[i]; 
+    }
+	return i;
+}
+```
+
+When we use **weighted-union** with **path compression** it takes $$\lg^* n$$ for each union or find operation, and $$n$$ is the number of elements in the set.
+
+* $$\lg^* n$$ is the **iterated logarithmic** function which computes the number of times you have to take log of N till the value of $$n$$ is less or equal than 1.
+
+  ```python
+  from math import log2
+ 
+  def logstar(n: int) -> int:
+      counter = 0
+      while n > 1:
+          n = log2(n)
+          counter += 1
+      return counter
+  ```
+
+* $$\lg^* n$$ is much better than $$\lg n​$$, as its value reaches at most up to 5 in the real world.
+
+
+
+<img src="assets/disjoint-sets-05.png" style="zoom:50%"/>
+
+<img src="assets/disjoint-sets-06.png" style="zoom:30%"/>
+
+
+
+<img src="assets/disjoint-sets-07.png" style="zoom:50%"/>
+
+* When using path comprehension, $$rank[i]$$ is no longer equal to the height of the subtree rooted at $$i​$$, i.e. path comprehension decreases the height of each tree.

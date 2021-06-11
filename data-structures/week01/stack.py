@@ -30,4 +30,10 @@ class Stack(BaseStack):
 
 
 class StackLL(BaseStack):
-    """Stack using Linked List."""
+    """
+    Stack using Linked List.
+    push operation translates into push_front
+    pop operation translates into pop_front
+    We dont have any limitation, we can add as many items
+    as we want.
+    """

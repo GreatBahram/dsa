@@ -19,6 +19,13 @@ class EMPTY:
 
 class Queue(BaseQueue):
     """
+    Queue can be implemented using an array or a linked-list.
+
+    In linked-list:
+        Enqueue: LinkedList.push_back
+        Dequeue: LinkedList.pop_front
+
+    Array Implementation:
     fixed-sized queue using two pointers and an array.
     Head will always points to the oldest element, while tail
     refers to the point that new item is going to be added.
