@@ -95,6 +95,8 @@ How long do Binary Search Tree operations take?
 
 ## AVL Trees
 
+If you have any problem with basic rotations, it is better to watch [this video](https://www.youtube.com/watch?v=u3OVSkuOdqI) before carrying on with the course's videos.
+
 ### Intro
 
 We learned that in order to our search operations be fast we need to find a way to balance the tree. But before that we need a way to measure balance tree.
@@ -117,6 +119,7 @@ The way we calculate the height of the tree:
 
 <img src="assets/avl-05.png" style="zoom:50%">
 
+* In other words, the difference can be -1, 0, 1.
 * Need to show that AVL property implies $Height=O(\lg(n))$. Alternatively, show that large height implies many nodes.
 
 <img src="assets/avl-06.png" style="zoom:50%">
@@ -129,9 +132,9 @@ The way we calculate the height of the tree:
 
 <img src="assets/avl-10.png" style="zoom:50%">
 
-### Implementation
+### AVL Trees Implementation
 
-There two places that we need to take care of our balanced tree:
+There two places that we need to take care of our balanced tree are:
 
 * insertion
 * deletion
@@ -144,7 +147,7 @@ The basic idea of inserting is like this:
 
 <img src="assets/avl-11.png" style="zoom:50%">
 
-How would we do the rebalancing? first if the $|N.left.height - N.right.height| <= 1$ , then it is fine and we don't need to do anything. but if it differs with more than one, the we'd do the rebalancing:
+How do  we do the rebalancing? first if the $|N.left.height - N.right.height| <= 1$ , then it is fine and we don't need to do anything. but if it differs with more than one, the we'd do the rebalancing:
 
 <img src="assets/avl-12.png" style="zoom:50%">
 
@@ -152,13 +155,21 @@ The `AdjuctHeight` function is pretty simple, we just calculate the height again
 
 <img src="assets/avl-13.png" style="zoom:50%">
 
+Code for re-balance right:
 
+<img src="assets/avl-24.png" style="zoom:30%">
 
-**Delete** operation: before we delete it, we found its successor, its successor probably isn't going to have a left child but it might have a right child. We take this successor and replace it with the node we are gonna to delete and the successor's right child replaces it. And we need to adjust the height of the successor parent to fix the height of the tree.
+**Delete** operation: before we delete it, we found its successor (next-larger), its successor probably isn't going to have a left child but it might have a right child. We take this successor and replace it with the node we are gonna to delete and the successor's right child replaces it. And we need to adjust the height of the successor parent to fix the height of the tree, because we either decrease or increase the successor's parent node.
 
 <img src="assets/avl-14.png" style="zoom:50%">
 
-Binary Search Trees have more interesting features such as you can recombine them, two new operations:
+New code for delete operation:
+
+<img src="assets/avl-25.png" style="zoom:30%">
+
+### New operations
+
+Binary Search Trees have more interesting features such as you can recombine them, two new operations are:
 
 * Merge: combine two binary search trees into a single one.
 * Split: break one binary search tree into two
@@ -167,4 +178,48 @@ Binary Search Trees have more interesting features such as you can recombine the
 
 In general, to merge two sorted lists takes $O(n)$ time. However, when they are separated it is faster:
 
-In merge operation we are given two roots $R_1, R_1$ with all keys in $R_1$'s tree smaller than those in $R_2$'s.
+In merge operation we are given two roots $R_1, R_1$ with all keys in $R_1$'s tree smaller than those in $R_2$'s. What we should return is the root of a new tree with all the elements of both trees.
+
+This problem was easy if we were given an extra node to add as root, in fact it takes $O(1)$:
+
+<img src="assets/avl-26.png" style="zoom:40%">
+
+<img src="assets/avl-27.png" style="zoom:35%">
+
+But since no one is going to give that extra node, what we can do is to find the largest element say in left tree and delete it from left-tree and use it as the extra node:
+
+* Remember, we modified the find function to return the best position that we can insert a new node.
+
+<img src="assets/avl-28.png" style="zoom:30%">
+
+* If we don't care about balancing that's it and we don't need to do anything else.
+
+* Instead of re-balancing the whole tree, we go down side of the larger tree until we merge it with subtree of same height.
+
+So, overall, the merge operation works like this:
+
+<img src="assets/avl-29.png" style="zoom:35%">
+
+Otherwise, what happens let's say if $R_1$ is bigger than $R_2$, we want to merge it with $R_1$ right child with $R_2$:
+
+<img src="assets/avl-30.png" style="zoom:30%">
+
+So the amount of time it takes isn't the depth of the tree, it is the number of step that we need to take:
+
+ <img src="assets/avl-31.png" style="zoom:30%">
+
+#### Split
+
+Split breaks one tree into two:
+
+<img src="assets/avl-32.png" style="zoom:30%">
+
+<img src="assets/avl-33.png" style="zoom:30%">
+
+All we have to do is find all subtrees that are less than x and bigger than x, and merge them together and return two tress at the end:
+
+<img src="assets/avl-34.png" style="zoom:30%">
+
+<img src="assets/avl-35.png" style="zoom:30%">
+
+* But if we used the `AVLMergeWithRoot` it would make sure the tree is balanced as well  and we time complexity is $(\lg n)$
