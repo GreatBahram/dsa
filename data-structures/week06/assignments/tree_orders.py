@@ -1,6 +1,5 @@
 import sys
 import threading
-from typing import List, NamedTuple
 
 sys.setrecursionlimit(10 ** 6)  # max depth of recursion
 threading.stack_size(2 ** 27)  # new thread will get stack of such size
