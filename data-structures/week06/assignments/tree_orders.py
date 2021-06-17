@@ -2,8 +2,8 @@ import sys
 import threading
 from typing import List, NamedTuple
 
-# sys.setrecursionlimit(10 ** 6)  # max depth of recursion
-# threading.stack_size(2 ** 27)  # new thread will get stack of such size
+sys.setrecursionlimit(10 ** 6)  # max depth of recursion
+threading.stack_size(2 ** 27)  # new thread will get stack of such size
 
 
 class Node:
@@ -12,22 +12,12 @@ class Node:
         self.left = self.right = None
 
 
-class VertexInfo(NamedTuple):
-    value: int
-    left_idx: int
-    right_idx: int
-
-
 def read_inputs():
     n = int(input())
-
-    array = [None] * n
-    for i in range(n):
-        array[i] = VertexInfo(*map(int, input().split()))
-    return array
+    return [tuple(map(int, input().split())) for i in range(n)]
 
 
-def create_tree(list_of_vertices: List[VertexInfo]) -> Node:
+def create_tree(list_of_vertices) -> Node:
     nodes = [Node(value) for value, *_ in list_of_vertices]
     # shape the tree structure
     for idx, (_, left_idx, right_idx) in enumerate(list_of_vertices):
@@ -62,29 +52,28 @@ def postorder(node: Node):
     print(node.value)
 
 
-# def main():
-
-
-
-if __name__ == "__main__":
-    # threading.Thread(target=main).start()
+def main():
     from contextlib import redirect_stdout
     from io import StringIO
-    
+
     list_of_vertices_info = read_inputs()
     root = create_tree(list_of_vertices_info)
-    
+
     fp = StringIO()
     with redirect_stdout(fp):
         inorder(root)
-    print(fp.getvalue().strip().replace('\n', ' '))
+    print(fp.getvalue().strip().replace("\n", " "))
 
     fp = StringIO()
     with redirect_stdout(fp):
         preorder(root)
-    print(fp.getvalue().strip().replace('\n', ' '))
+    print(fp.getvalue().strip().replace("\n", " "))
 
     fp = StringIO()
     with redirect_stdout(fp):
         postorder(root)
-    print(fp.getvalue().strip().replace('\n', ' '))
+    print(fp.getvalue().strip().replace("\n", " "))
+
+
+if __name__ == "__main__":
+    threading.Thread(target=main).start()
