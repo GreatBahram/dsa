@@ -1,4 +1,4 @@
-Splay Trees
+# Splay Trees
 
 Until now, we talk about how to keep our tree balanced in order to have operations in $O(\lg n)$., in other words, search for random access is at least $O(\lg n)$.
 
@@ -17,7 +17,7 @@ For example, in the above picture, if we search for 1, 5, 7 items more so often,
 
 <img src="assets/splay-08.png" style="zoom:40%">
 
-Unfortunately the simple idea is not that good, we start with an unbalanced tree and ended up with imbalanced one as well. In fact, it is possible to repeat the operations over and over again, which takes $O(n^2)$. So the average operation time is linear rather than logarithmic. 
+Unfortunately the simple idea is not that good, we start with an unbalanced tree and ended up with imbalanced one as well. In fact, it is possible to repeat the operations over and over again, which takes $O(n^2)$. So **the average operation time is linear rather than logarithmic**.
 
 <img src="assets/splay-02.png" style="zoom:50%">
 
