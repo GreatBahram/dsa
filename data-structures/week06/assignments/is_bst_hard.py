@@ -29,25 +29,28 @@ def create_tree(list_of_vertices) -> Node:
     return nodes[0] if nodes else None
 
 
-def is_bst_second(node: Node, left, ceil) -> bool:
+def is_bst(node: Node, floor, ceil) -> bool:
     if not node:
         return True
-    if node.value >= :
-      return False
-    
-    if ceil and node.value >
-    if node.value <= floor or node.value > ceil:
+    if ceil and node.value >= ceil:
         return False
 
-    left_ok = is_bst_second(node.left, floor, node.value)
-    right_ok = is_bst_second(node.right, node.value, ceil)
-    return left_ok and right_ok
+    if floor and node.value < floor:
+        return False
+
+    left_ok = is_bst(node.left, floor, node.value)
+    right_ok = is_bst(node.right, node.value, ceil)
+
+    if not left_ok or not right_ok:
+        return False
+
+    return True
 
 
 def main():
     list_of_vertices_info = read_inputs()
     root = create_tree(list_of_vertices_info)
-    if is_bst_second(root, floor=-math.inf, ceil=math.inf):
+    if is_bst(root, floor=-math.inf, ceil=math.inf):
         print("CORRECT")
     else:
         print("INCORRECT")
