@@ -82,3 +82,40 @@ def insert(node: Node, key) -> Node:
         node.right = insert(node.right, key)
         node.right.parent = node
     return node
+
+
+def min_value(node: Node):
+    while node.left is not None:
+        node = node.left
+    return node
+
+
+def delete(root: Node, key):
+    if root is None:
+        return root
+
+    if root.value > key:
+        root.left = delete(root.left, key)
+    elif root.value < key:
+        root.right = delete(root.right, key)
+    else:
+        # return the right child as the new root.
+        if root.left is None:
+            temp = root.right
+            root = None
+            return temp
+        # return the left child as the new root.
+        elif root.right is None:
+            temp = root.left
+            root = None
+            return temp
+
+        # find the successor node
+        temp = min_value(root.right)
+
+        # replace the successor with root node
+        root.value = temp.value
+
+        # remove the sucessor from the sub-tree
+        delete(root.right, temp.value)
+    return root
