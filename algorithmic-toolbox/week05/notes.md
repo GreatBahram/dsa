@@ -67,7 +67,7 @@ def fib(n: int):
 memo = {}
 
 for k in range(1, n + 1):
-    if k <= 2:
+    if k < 2:
         value = k
     else:
         value = memo[k - 1] + memo[k - 2]
