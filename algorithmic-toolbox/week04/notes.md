@@ -174,7 +174,7 @@ What's remain to be done, is the left and right side of the pivot item. We could
 
 <img src="assets/sorting-problem/quick-sort-03.png" style="zoom:15%" alt="How quick sort works">
 
-But, how does the   function work?
+But, how does the  partition function work?
 
 <img src="assets/sorting-problem/quick-sort-04.png" style="zoom:15%" alt="How quick sort works">
 
@@ -198,7 +198,7 @@ So, finding a good pivot is the most important aspect of quick sort (even if thi
 
 * Why random pivot?
 
-Image we an array of items called A, and each element is unique inside the list, if we sort this array, then we expect the $$\frac{n}{2}$$ of item be placed in the center of the sorted array, the remaining $$2\frac{n}{4}$$ be smaller and greater, respectively of the centered items. **So half of the elements of A guarantees a balanced partition.**
+Imagine we have an array of items called A, and each element is unique inside the list, if we sort this array, then we expect the $$\frac{n}{2}$$ of item be placed in the center of the sorted array, the remaining $$2\frac{n}{4}$$ be smaller and greater, respectively of the centered items. **So half of the elements of A guarantees a balanced partition.**
 
 ##### Equal elements
 
@@ -226,4 +226,4 @@ In the above implementation we don't care about which side is shorter, while we 
 
 https://stackabuse.com/quicksort-in-python/
 
-https://brilliant.org/wiki/quick-sort/
+https://brilliant.org/wiki/quick-sort/  
