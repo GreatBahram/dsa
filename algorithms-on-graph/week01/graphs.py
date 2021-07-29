@@ -6,6 +6,14 @@ Vertex = TypeVar("Vertex")
 
 # calculate the number of connected components
 class Graph:
+    """
+    >>> g = Graph()
+    >>> g.add('a', 'b')
+    >>> g.add('a', 'c')
+    >>> g.add('d', 'e')
+    >>> len(g.get_connected_components())
+    2
+    """
     def __init__(self):
         self.adj = defaultdict(list)
 
