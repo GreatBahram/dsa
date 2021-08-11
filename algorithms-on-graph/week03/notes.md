@@ -27,3 +27,19 @@ We process the graph layer by layer
 <img src="assets/graph-05.png" style="zoom:50%"/>
 
 <img src="assets/graph-06.png" style="zoom:50%"/>
+
+### Proof of Correctness
+
+<img src="assets/graph-07.png" style="zoom:50%"/>
+
+### Shortest-path Tree
+
+<img src="assets/graph-08.png" style="zoom:50%"/>
+
+<img src="assets/graph-09.png" style="zoom:50%"/>
+
+* prev array/map holds the data about the parent node of $u$.
+
+<img src="assets/graph-10.png" style="zoom:50%"/>
+
+<img src="assets/graph-11.png" style="zoom:50%"/>
