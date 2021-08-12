@@ -20,7 +20,9 @@ We can use a simpler representation to do this task, which is called distance la
 
 ### Breadth-first Search
 
-We process the graph layer by layer
+We process the graph layer by layer.
+
+* We can use BFS to find the shortest path when the graph is **undirected** and **unweighted**.
 
 ### Implementation and Analysis
 
