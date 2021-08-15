@@ -38,3 +38,5 @@ Here we assume we have a upper bound on actual distance from $S$ to $v$ and when
 * Works in $O(|V|^2)$ or $O((|V| + |E|) log (|V|))$ (priority-queue) depending on the implementation.
 
 ## Currency Exchange
+
+In this part, we are going to learn how to find the shortest path even if some of the weights are negative.
