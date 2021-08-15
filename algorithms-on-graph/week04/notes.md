@@ -1,4 +1,4 @@
-Paths in Graphs 2
+# Paths in Graphs 2
 
 ## Fastest Route
 
@@ -35,6 +35,6 @@ Here we assume we have a upper bound on actual distance from $S$ to $v$ and when
 * Running time of this algorithm depends on what data structure you're going to use for the $H$, it would be $|V^2|$ if you go for a simple array.
 * Dijkstra can find the minimum time to get from work to home.
 * It can also find the fastest route from work to home. Works for any graph with **non-negative** edge weights.
-* Works in $O(|V|^2)$ or $O((|V| + |E|) log (|V|))$ depending on the implementation.
+* Works in $O(|V|^2)$ or $O((|V| + |E|) log (|V|))$ (priority-queue) depending on the implementation.
 
 ## Currency Exchange
