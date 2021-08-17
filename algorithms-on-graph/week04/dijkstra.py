@@ -36,7 +36,7 @@ class Graph:
             visited.add(u)
 
             # Go through all edges of vertex u and do the edge relaxation
-            for v in self.adj[u]:
+            for v in range(self.vertices):
                 is_visited = v in visited
                 new_path_weight = distances[u] + self.adj[u][v]
                 found_shorter_path = distances[v] > new_path_weight
