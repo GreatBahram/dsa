@@ -131,4 +131,17 @@ If we know there is a negative cycle, we want to find it, at least one of them:
 
 <img src="assets/graph-27.png" style="zoom:50%"/>
 
-### Infinite Arbitrage 
+### Infinite Arbitrage
+
+<img src="assets/graph-28.png" style="zoom:50%"/>
+
+<img src="assets/graph-29.png" style="zoom:50%"/>
+
+<img src="assets/graph-30.png" style="zoom:50%"/>
+
+How to detect infinite Arbitrage
+
+<img src="assets/graph-31.png" style="zoom:50%"/>
+
+<img src="assets/graph-32.png" style="zoom:50%"/>
+
