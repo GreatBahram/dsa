@@ -97,7 +97,7 @@ There might exist a negative weight cycle:
 
 which is an algorithm for shortest path when edges can have negative weights.
 
-Its benefit over Dijkstra's algorithm it works even for negative edge weights, it is a bit slower than Dijkstra, but covers everything.
+Its benefit over Dijkstra's algorithm it works even for negative edge weights, it is a bit **slower** than Dijkstra, but covers everything.
 
 * This algorithm assumes there **are not** negative weight cycles in $G$, otherwise it **may not** return correct distances for some of the node.
 
@@ -117,7 +117,7 @@ We did $|V| - 1$ iteration in Bellman-Ford algorithm, so if you run one more ite
 
 This proof says even if there is a cycle (non-negative) more iteration does not result in changing distances. Because it is positive and we are looking for shortest path and that cycle can be removed.
 
- 					<img src="assets/graph-24.png" style="zoom:50%"/>
+​																	<img src="assets/graph-24.png" style="zoom:50%"/>
 
 Second proof says imagine there is a negative cycle but it won't result in relaxation (contradiction):
 
@@ -144,7 +144,3 @@ How to detect infinite Arbitrage
 <img src="assets/graph-31.png" style="zoom:50%"/>
 
 <img src="assets/graph-32.png" style="zoom:50%"/>
-
-## Currency Exchange
-
-In this part, we are going to learn how to find the shortest path even if some of the weights are negative.
