@@ -29,7 +29,7 @@ Example: Using the same graph for both of these algorithms and compare the resul
 
 Implementation details
 
-1. use disjoint sets data structure
+1. use **disjoint sets** data structure
 2. initially, each vertex lies in a separate set
 3. each set is the set of vertices of a connected component
 4. to check whether the current edge $\{u,v\}$ produces a cycle, we check whether $u$ and $v$ belong to the same set.
@@ -48,6 +48,25 @@ Implementation details
 
   $2|E|.T(Find) + |V| . T(Union)$; we have $2|E|$ as we used two find operation for both edges.
 
-* if we use some sophisticated heuristics such as path compression and etc, the processing edges step will turn into $\lg^*$, but the as the sorted edges takes $O(|E| \lg{|V|}), it will dominate the second section.
+* if we use some sophisticated heuristics such as path compression and etc, the processing edges step will turn into $\lg^*$, but the as the sorted edges takes $O(|E| \lg{|V|})$, it will dominate the second section.
 
-#### Prim Algorithm
+* Kruskal's algorithms' is preferred when the graph is sparse, $E=O(V)$, or when the edges can be sorted in linear time.
+
+#### Prim's Algorithm
+
+* X is always a subtree, grows by one edge at each iteration.
+* We add a lightest edge between a vertex of the tree and a vertex not in the tree.
+* Use a **heap-based** data structure.
+* Very similar to Dijkstra's algorithm.
+* Prim's algorithm is very similar to Kruskal's: whereas Kruskal's "grows" a forest of trees, Prim's algorithm grows a single tree until it becomes the minimum spanning tree.
+* Prim algorithm is preferred when the graph is dense, like $E=O(V^2)$
+
+<img src="assets/mst-07.png" style="zoom:50%"/>
+
+The running time is:
+
+$|V|.T(ExtractMin) + |E|.T(ChangePriority)$; the total running time depends on the data structure that we use for the queue:
+
+* if it is an **array**, it will be $|V^2|$: $|V|.|V| + |E|.O(1)$ (finding the minimum and shifting the array is costly; while changing the priority is cheap).
+* For binary heap-based implementation, the running time is $O(|V| + |E| log |V|)$ = $O(|E| \lg{|V|})$. 
+
