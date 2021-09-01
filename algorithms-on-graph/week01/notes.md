@@ -1,6 +1,6 @@
 ## Graph Basics
 
-Graphs are abstractions to represent connection between objects. You can represent many things using graphs:
+Graphs are abstractions to **represent connection between objects**. You can represent many things using graphs:
 
 * Network Connection
 * Maps
@@ -26,7 +26,7 @@ So far, we said a graph is consisted of a bunch of vertices (nodes), and also a 
 
 <img src="assets/graph-03.png" style="zoom:50%"/>
 
-**Adjacency List**: For each vertix, store a list of adjacent vertices.
+**Adjacency List**: For each vertex, store a list of adjacent vertices.
 
 <img src="assets/graph-04.png" style="zoom:50%"/>
 
