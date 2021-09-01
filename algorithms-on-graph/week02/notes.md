@@ -47,7 +47,7 @@ Follow path as far as possible, $v_1 \rightarrow v_2 \rightarrow \dots \rightarr
 
 ## Strongly Connected Components
 
-Two vertices $v$, $w$ in a directed graph are *connected* if you can reach $v$ from $w$ and can reach from $w$ from $v$.
+Two vertices $v$, $w$ in a directed graph are *connected* if you can reach $v$ from $w$ and can reach $w$ from $v$.
 
 * A directed graph can be partitioned into *strongly connected components* where two vertices are connected if and only if they are in the same component.
 
@@ -71,7 +71,7 @@ What's the idea behind this algorithm: if you take a vertex $v$ and run the expl
 
 <img src="assets/graph-13.png" style="zoom:30%"/>
 
-So you pass a sink node, you would get the exact connect components which is itself. So wee a way to find a sink SCC.
+So you pass a sink node, you would get the exact connect components which is itself. So need a way to find a sink SCC.
 
 <img src="assets/graph-14.png" style="zoom:30%"/>
 
