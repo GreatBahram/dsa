@@ -23,6 +23,7 @@ We can use a simpler representation to do this task, which is called distance la
 We process the graph layer by layer.
 
 * We can use BFS to find the shortest path when the graph is **undirected** and **unweighted**.
+* The graph should be **unweighted** because BFS does not check the weight of an edge, it will only search for the minimum segment.
 
 ### Implementation and Analysis
 
