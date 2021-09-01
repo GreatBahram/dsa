@@ -1,13 +1,14 @@
-from collections import defaultdict
 from typing import List
 
 
 class Graph:
+    """Undirected graph using adjacency list representation."""
+
     def __init__(self, number_of_vertices: int) -> None:
-        self.adj = defaultdict(list)
+        self.adj = {}
 
         for v in range(1, number_of_vertices + 1):
-            self.adj[v]
+            self.adj[v] = []
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}({repr(dict(self.adj))})"
@@ -48,4 +49,4 @@ if __name__ == "__main__":
     graph = Graph(n)
     graph.update(edges)
 
-    print(graph.get_connected_components())
+    print(len(graph.get_connected_components()))
