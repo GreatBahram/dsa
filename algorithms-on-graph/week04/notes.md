@@ -96,7 +96,7 @@ There might exist a negative weight cycle:
 
 ### Bellman-Ford algorithm
 
-which is an algorithm for shortest path when edges can have negative weights.
+which is an algorithm for shortest path when edges **can have** negative weights.
 
 Its benefit over Dijkstra's algorithm it works even for negative edge weights, it is a bit **slower** than Dijkstra, but covers everything.
 
@@ -110,7 +110,7 @@ How to deal with negative cycles in graphs
 
 * Detect and find the cycle if you know there is one.
 
-We did $|V| - 1$ iteration in Bellman-Ford algorithm, so if you run one more iteration and the distances change then we realize that there is a negative weight cycle.
+We did $|V| - 1$ iteration in Bellman-Ford algorithm, so if you run one more iteration and **the distances change** then we realize that there is a negative weight cycle.
 
 <img src="assets/graph-22.png" style="zoom:50%"/>
 
