@@ -1,3 +1,4 @@
+"""Dijkstra's algorithm implementation using both an array and priority queue."""
 import math
 from dataclasses import dataclass
 from queue import PriorityQueue
@@ -85,21 +86,16 @@ class Graph2:
 
     def dijkstra(self, source):
         """
-        The running time of this algorithm should be (|v| + |e| log |v|)
-        but I have not finished it.
+        The running time of this algorithm is (|V| + |E| log |V|).
         """
         distances = {vertex: math.inf for vertex in self.vertices}
         distances[source] = 0
 
         pq = PriorityQueue()
-        for (
-            vertex,
-            weight,
-        ) in distance.items():
-            pq.put((weight, vertex))
+        pq.put((0, source))
 
         while not pq.empty():
-            # pick the minimum distance and mark as visited
+            # extract the vertex with minimum weight and mark as visited
             _, u = pq.get()
             dist_u = distances[u]
 
@@ -114,12 +110,3 @@ class Graph2:
                     distances[v] = new_path_weight
 
         return distances
-
-    def min_distance(self, dist, visited):
-        """Return the minimum index"""
-        min = math.inf
-        for vertex in self.vertices:
-            if vertex not in visited and dist[vertex] < min:
-                min = dist[vertex]
-                min_idx = vertex
-        return min_idx

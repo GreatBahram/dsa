@@ -34,9 +34,10 @@ Here we assume we have a upper bound on actual distance from $S$ to $v$ and when
 
 * Running time of this algorithm depends on what data structure you're going to use for the $H$, it would be $|V^2|$ if you go for a simple array.
 * Dijkstra can find the minimum time to get from work to home.
-* It can also find the fastest route from work to home. Works for any graph with **non-negative** edge weights. Because in every round Dijkstra will settle a node, finalize a node if you later find a negative weighed edge, this could lead to a shorter path to that settled node.
-* Works in $O(|V|^2)$ or $O((|V| + |E|) log (|V|))$ (priority-queue) depending on the implementation.
+* It works for any graph with **non-negative** edge weights. Because in every round Dijkstra will settle a node, finalize a node if you later find a negative weighed edge, this could lead to a shorter path to that settled node.
+* Works in $O(|V|^2)$ or $O((|V| + |E|) log (|V|))$ (priority-queue) depending on the implementation. In the worst case $|E|=|V^2|$, so it becomes $O(|V| +|V^2| \lg{|V|})$ which equals $O(|V^2| \lg{|V|})$. In the best case there is no edges so overall cost would be $O(|V|\lg{|V|})$.
 * While Dijkstra's algorithm **may fail** to find optimal path on certain graphs with negative weights, having a **negative cycle** is a bigger problem for **any** shortest path graph.
+* It works for both **directed** and **undirected** graphs.
 
 ## Currency Exchange
 

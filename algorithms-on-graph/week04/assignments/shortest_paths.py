@@ -1,12 +1,7 @@
 import math
 import queue
-import sys
 from numbers import Number
 from typing import NamedTuple
-
-
-def shortet_paths(adj, cost, s, distance, reachable, shortest):
-    pass
 
 
 class WeightedEdge(NamedTuple):
